@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>벽돌깨기 게임</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧱 벽돌깨기 게임 🧱</h1>
+        </header>
+        
+        <!-- 이미지 업로드 섹션 -->
+        <div class="upload-section">
+            <div class="upload-controls">
+                <label for="imageUpload" class="upload-btn">
+                    📷 이미지 업로드
+                    <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                </label>
+                <label for="gridSize">픽셀 크기:</label>
+                <select id="gridSize">
+                    <option value="8">8x8</option>
+                    <option value="16" selected>16x16</option>
+                    <option value="32">32x32</option>
+                    <option value="64">64x64</option>
+                </select>
+                <button id="resetToDefault" class="reset-btn">기본 패턴</button>
+            </div>
+            <div class="image-preview">
+                <canvas id="previewCanvas" width="160" height="160"></canvas>
+                <div class="preview-info">
+                    <p>이미지를 업로드하면 픽셀화되어 벽돌 패턴으로 변환됩니다!</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="game-area">
+            <canvas id="gameCanvas" width="600" height="800"></canvas>
+            
+            <!-- Cat Meme Videos -->
+            <div class="video-area">
+                <video id="chipychipyVideo" class="meme-video" loop autoplay preload="auto">
+                    <source src="{{ url_for('static', filename='chipychipy.mp4') }}" type="video/mp4">
+                </video>
+                
+                <video id="huhVideo" class="meme-video" loop autoplay preload="auto" style="display: none;">
+                    <source src="{{ url_for('static', filename='huh.mp4') }}" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        
+        <div id="gameOverModal" class="modal">
+            <div class="modal-content">
+                <h2 id="gameOverTitle">게임 오버!</h2>
+                <p id="gameOverMessage">스페이스바를 눌러 다시 시작하세요</p>
+            </div>
+        </div>
+        
+        <div id="loadingModal" class="modal">
+            <div class="modal-content">
+                <h2>🎨 이미지 처리 중...</h2>
+                <p>잠시만 기다려주세요!</p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/game.js') }}"></script>
+</body>
+</html> 
